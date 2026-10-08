@@ -1,0 +1,65 @@
+import pygame
+import sys
+
+pygame.init()
+
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Ruchit Patil 71")
+
+
+background = pygame.image.load("bg1.jpg")
+background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+
+player_img = pygame.image.load("player.jpg")
+player_img = pygame.transform.scale(player_img, (70, 70))
+
+obstacle_img = pygame.image.load("obstacle.jpg")
+obstacle_img = pygame.transform.scale(obstacle_img, (120, 120))
+
+
+player = player_img.get_rect()
+player.x = 100
+player.y = 250
+
+
+obstacle = obstacle_img.get_rect()
+obstacle.x = 500
+obstacle.y = 250
+
+
+font = pygame.font.SysFont(None, 40)
+clock = pygame.time.Clock()
+
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT]:
+        player.x -= 5
+    if keys[pygame.K_RIGHT]:
+        player.x += 5
+    if keys[pygame.K_UP]:
+        player.y -= 5
+    if keys[pygame.K_DOWN]:
+        player.y += 5
+
+
+    screen.blit(background, (0, 0))
+    screen.blit(player_img, player)
+    screen.blit(obstacle_img, obstacle)
+
+    if player.colliderect(obstacle):
+        text = font.render("Makqsad Successfull!", True, (255, 0, 0))
+        screen.blit(text, (220, 40))
+
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()
