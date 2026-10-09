@@ -16,7 +16,8 @@ radius = 25
 
 velocity_y = 0
 gravity = 0.5
-bounce = -0.8
+bounce = -12
+
 
 clock = pygame.time.Clock()
 

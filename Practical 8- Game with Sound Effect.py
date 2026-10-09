@@ -116,4 +116,3 @@ while running:
 
 pygame.quit()
 sys.exit()
-s
